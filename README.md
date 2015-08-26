@@ -71,12 +71,6 @@ Comment-out line `173` of `lib/phpunit/bootstrap.php`, then:
     php admin/tool/phpunit/cli/util.php --buildcomponentconfigs
     vendor/bin/phpunit -c mod/vocabcards
 
-### Jasmine
-
-    cd mod/vocabcards
-    npm install
-    node_modules/karma/bin/karma start
-
 ## Gulp
 
 There are four [Gulp](http://gulpjs.com/) tasks:
