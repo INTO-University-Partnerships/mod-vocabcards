@@ -1,0 +1,27 @@
+{% extends 'base/cardList.twig' %}
+
+{% block header_row %}
+    <tr>
+        <th class="three-column">{{ trans('word', plugin) }}</th>
+        <th class="three-column">{{ trans('student', plugin) }}</th>
+        <th class="three-column">{{ trans('modified', plugin) }}</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+    <tr ng-repeat="card in cards"
+        card-feedback-list-item card="card">
+    </tr>
+    <tr ng-show="!!cards && total == 0" class="warning"><td colspan="3" class="no-cards">{{ trans('nocards', plugin) }}</td></tr>
+{% endblock %}
+
+{% block pagination %}
+    {% verbatim %}
+        <pagination per-page="{{ perPage }}"
+                    current-page="currentPage"
+                    total="total"
+                    fetch-page="getPageOfCardsInReviewInActivity(currentPage)"
+                    ng-show="total > perPage">
+        </pagination>
+    {% endverbatim %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% block page %}
+    {{ page('course', course.id, wwwroot ~ slug ~ path(app, {courseid: course.id})) }}
+{% endblock %}
+
+{{ css(STATIC_URL ~ 'css/' ~ app ~ '.css') }}
+{% block extra_css %}{% endblock %}
+
+{% block navbaradd %}
+    {{ navbaradd(trans(app, plugin)) }}
+{% endblock %}
+
+{{ header()|raw }}
+
+{% block h2 %}
+    <h2>{{ trans(app, plugin) }}</h2>
+{% endblock %}
+
+{% block header %}{% endblock %}
+<div ng-app="{{ app }}App" ng-view ng-cloak></div>
+{% block footer %}{% endblock %}
+
+{% block angularjs_config %}{% endblock %}
+
+{# begin footer #}
+{% set footer_script %}
+    <script src="{{ bower_url }}angular/angular.min.js"></script>
+    <script src="{{ bower_url }}angular-route/angular-route.min.js"></script>
+    <script src="{{ bower_url }}angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="{{ wwwroot }}/mod/vocabcards/static/js/build/{{ app }}.min.js"></script>
+{% endset %}
+{{ footer(footer_script)|raw }}
+{# end footer #}

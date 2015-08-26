@@ -1,0 +1,25 @@
+{% extends 'base/app.twig' %}
+
+{% block angularjs_config %}
+<script>
+    CONFIG = {
+        app: '{{ app }}',
+        partialsUrl: '{{ wwwroot ~ slug ~ '/partials/' }}',
+        apiUrls: {
+            words: '{{ wwwroot ~ slug ~ path('getwords', {courseid: course.id}) }}'
+        },
+        sesskey: '{{ sesskey() }}',
+        sections: [
+            {% for section in sections %}{
+                id: {{ section.id }},
+                section: {{ section.section }},
+                name: '{{ section.name }}'
+            }{% if not loop.last %},{% endif %}{% endfor %}
+        ],
+        messages: {
+            'confirm_delete_word': '{{ trans('js:confirm_delete_word', plugin) }}',
+            'word_deleted_successfully': '{{ trans('js:word_deleted_successfully', plugin) }}'
+        }
+    };
+</script>
+{% endblock %}

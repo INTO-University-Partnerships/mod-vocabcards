@@ -1,0 +1,117 @@
+div.margin-bottom {
+    margin-bottom: 10px;
+}
+
+td.no-cards {
+    font-weight: bold;
+    text-align: center;
+}
+
+th.two-column {
+    width: 50%;
+}
+
+th.three-column {
+    width: 33%;
+}
+
+form.card {
+    margin-top: 10px;
+}
+
+form.card .column {
+    float: left;
+}
+
+form.card div.border {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form.card div.word {
+    width: 200px;
+    height: 18px;
+    padding: 15px;
+    margin: 0 10px 10px 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+}
+
+form.card div.phonemic,
+form.card div.phonemic-readonly {
+    width: 220px;
+    margin: 0 0 10px 0;
+}
+
+form.card div.phonemic {
+    height: 28px;
+    padding: 10px;
+}
+
+form.card div.phonemic-readonly {
+    height: 20px;
+    padding: 14px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+form.card label {
+    width: 120px;
+    text-align: right;
+    margin-right: 20px;
+}
+
+form.card div.fields,
+form.card div.example-sentences {
+    padding: 10px;
+}
+
+form.card div.example-sentences > div {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+form.card div.fields p {
+    width: 325px;
+}
+
+form.card div.fields input,
+form.card div.fields textarea {
+    width: 300px;
+}
+
+form.card div.example-sentences textarea {
+    width: 360px;
+}
+
+form.card div.column-left {
+    margin-right: 20px;
+}
+
+form.card div.column-right {
+    width: 400px;
+}
+
+form.card div.buttons > div {
+    float: right;
+}
+
+div.card-feedback {
+    margin-top: 10px;
+    width: 912px;
+}
+
+div.card-feedback td.user,
+div.card-feedback td.time-created {
+    width: 25%;
+}
+
+div.card-feedback td.feedback {
+    width: 50%;
+}
+
+div.card-feedback span.strong {
+    font-weight: bold;
+}

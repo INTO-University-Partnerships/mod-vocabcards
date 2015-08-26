@@ -1,0 +1,15 @@
+{% verbatim %}
+    <td>
+        <a ng-href="{{ cardHref(card) }}">
+            <strong>{{ card.word|uppercase|substring:0:1 }}{{ card.word|lowercase|substring:1 }}</strong>
+        </a>
+    </td>
+    <td><span ng-bind-html="card.tags|pipes"></span></td>
+    <td>{{ card.ownerfullname }}</td>
+    <td ng-if="omniscience">
+        <select ng-model="card.status" ng-change="statusChanged(card)">
+            <option ng-repeat="status in [0, 1, 2, 3]" value="{{ status }}" ng-selected="card.status == status">{{ cardStatus[status] }}</option>
+        </select>
+    </td>
+    <td>{{ card.timeaddedtorepo }}</td>
+{% endverbatim %}

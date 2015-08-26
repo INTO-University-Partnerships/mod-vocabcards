@@ -1,0 +1,92 @@
+<style>
+    * {
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    table.root {
+        font-size: 100%;
+    }
+    .owner,
+    table tr td {
+        font-size: 0.96em;
+    }
+    table tr th {
+        font-weight: bold;
+        line-height: 30em;
+    }
+    .centered {
+        text-align: center;
+    }
+    .word {
+        font-size: 1.3em;
+    }
+    .header {
+        line-height: 30em;
+    }
+    .header-text {
+        font-size: 1.08em;
+    }
+    .border {
+        border: 1px solid #ddd;
+    }
+    .label {
+        text-align: right;
+    }
+</style>
+<table class="root">
+    <tr>
+        <td colspan="3" class="owner">
+            <br/>{{ trans('owner', plugin) }}: {{ card.ownerfullname }}<br/>
+        </td>
+    </tr>
+    <tr>
+        <td width="54%"><table style="padding-top:1px">
+                <tr>
+                    <td><table with="100%" class="centered">
+                            <tr class="header">
+                                <th width="49%" class="word border"><br/>
+                                    {% if card.word is defined and card.word is not empty %}
+                                        {{ card.word|capitalize }}
+                                    {% endif %}
+                                </th>
+                                <th width="2%"></th>
+                                <th width="49%" class="header-text border"><br/>{% if card.phonemic is defined and card.phonemic is not empty %}
+                                        {{ card.phonemic }}
+                                    {% endif %}
+                                </th>
+                            </tr>
+                        </table>
+                        <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><table class="border properties">
+                            <tr>
+                                <td colspan="2"><br/></td>
+                            </tr>
+                            {% for field in ['definition', 'noun', 'verb', 'adverb', 'adjective', 'synonym_', 'antonym_', 'prefixes', 'suffixes', 'collocations', 'tags'] %}
+                                <tr>
+                                    <td width="30%" class="label">{{ trans('label:' ~ field, plugin) }}:&nbsp;&nbsp;&nbsp;&nbsp;<br/></td>
+                                    <td width="67%">{% if card[field] is defined and card[field] is not empty %}{{ card[field] }}
+                                        {% endif %}<br/></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td width="2%"></td>
+        <td width="44%"><table class="border" style="padding: 0 0 5% 3%">
+                <tr class="header">
+                    <th class="header-text">{{ trans('examplesentences', plugin) }}</th>
+                </tr>
+                <tr>
+                    <td>{% if card.sentences is defined and card.sentences is not empty %}{{ card.sentences }}
+                        {% endif %}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

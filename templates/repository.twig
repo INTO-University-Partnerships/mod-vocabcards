@@ -1,0 +1,57 @@
+{% extends 'base/app.twig' %}
+
+{% block extra_css %}
+    {{ css(STATIC_URL ~ 'css/cards.css') }}
+{% endblock %}
+
+{% block angularjs_config %}
+<script>
+    CONFIG = {
+        app: '{{ app }}',
+        userid: {{ userid }},
+        partialsUrl: '{{ wwwroot ~ slug ~ '/partials/' }}',
+        exportUrl: '{{ wwwroot ~ slug ~ path('exporttopdf', {courseid: course.id}) }}',
+        apiUrls: {
+            cards: '{{ wwwroot ~ slug ~ path('getcards', {courseid: course.id}) }}',
+            feedbacks: '{{ wwwroot ~ slug ~ path('getfeedbacks', {courseid: course.id}) }}'
+        },
+        sesskey: '{{ sesskey() }}',
+        groups: [
+            {% for group in groups %}{
+                id: {{ group.id }},
+                name: '{{ group.name }}'
+            }{% if not loop.last %},{% endif %}{% endfor %}
+        ],
+        cardStatus: [
+            {% for i in range(0, 3) %}
+            '{{ trans('status:' ~ i, plugin) }}'{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        reverseCardStatus: {
+            {% for s in ['not_started', 'in_progress', 'in_review', 'in_repository'] %}
+            '{{ s }}': {{ loop.index0 }}{% if not loop.last %},{% endif %}
+            {% endfor %}
+        },
+        messages: {
+            {% for m in [
+                   'cannot_edit_card_as_in_review',
+                   'cannot_review_card_as_not_in_repository',
+                   'cannot_view_card_as_not_in_repository',
+                   'cannot_edit_card_as_not_owner',
+                   'cannot_review_card_as_not_in_review',
+                   'omniscience',
+                   'cannot_review',
+                   'cannot_review_own_card',
+                   'confirm_delete_feedback',
+                   'feedback_deleted_successfully'
+               ]
+            %}
+            '{{ m }}': '{{ trans('js:' ~ m, plugin) }}'{% if not loop.last %},{% endif %}
+            {% endfor %}
+        },
+        omniscience: {% if omniscience %}true{% else %}false{% endif %},
+        canFeedback: {% if can_feedback %}true{% else %}false{% endif %},
+        angularjs_route: '{{ angularjs_route }}'
+    };
+</script>
+{% endblock %}

@@ -1,0 +1,11 @@
+<td><strong>{% verbatim %}{{ student.studentfullname }}{% endverbatim %}</strong></td>
+{% verbatim %}
+    <td>
+        <button class="btn btn-small btn-info removable"
+                type="button"
+                ng-click="deleteCard({cardid: card.id}); $event.stopPropagation();"
+                ng-disabled="card.status != 0"
+                ng-repeat="card in student.cards">{{ card.word|uppercase|substring:0:1 }}{{ card.word|lowercase|substring:1 }}&nbsp;<i class="icon-remove"></i>
+        </button>
+    </td>
+{% endverbatim %}

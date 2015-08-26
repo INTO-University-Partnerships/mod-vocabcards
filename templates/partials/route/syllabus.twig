@@ -1,0 +1,78 @@
+{# begin alerts #}
+<alerts messages="messages"></alerts>
+{# end alerts #}
+
+{# begin add new word #}
+<div class="well well-small">
+    <h3>{{ trans('addnewword', plugin) }}</h3>
+    <p><strong>{{ trans('addnewword', plugin) }}&nbsp;{{ trans('to')|lower }}&nbsp;{{ trans('syllabus', plugin)|lower }}</strong></p>
+
+    {# begin form #}
+    <form class="form-inline" role="form">
+        <label for="id_word">{{ trans('word', plugin) }}&#58;</label>
+        <input id="id_word" type="text" ng-trim ng-focus="errorMessage = ''; successMessage = ''" ng-model="newWord"/>
+        <label for="id_section">{{ trans('section', plugin) }}&#58;</label>
+        <select id="id_section" ng-model="newSection">
+            {% verbatim %}<option ng-repeat="section in sections" value="{{ section.id }}">{{ section.name }}</option>{% endverbatim %}
+        </select>
+        <button type="submit" class="btn btn-primary" ng-click="addNewWord()" ng-disabled="addNewWordDisabled()">{{ trans('add') }}</button>
+    </form>
+    {# end form #}
+
+</div>
+{# end add new word #}
+
+{# begin list existing words #}
+<div class="well well-small">
+    <h3>{{ trans('listexistingwords', plugin) }}</h3>
+    <p><strong>{{ trans('listexistingwords', plugin) }}&nbsp;{{ trans('in', plugin)|lower }}&nbsp;{{ trans('syllabus', plugin)|lower }}</strong></p>
+
+    {# begin filter #}
+    <form class="form-inline" role="form">
+        <label for="id_section_filter">{{ trans('section', plugin) }}&#58;</label>
+        <select id="id_section_filter" ng-model="sectionFilter" ng-change="sectionFilterChanged()">
+            <option value="0" selected="selected">{{ trans('all') }}</option>
+            {% verbatim %}<option ng-repeat="section in sections" value="{{ section.id }}">{{ section.name }}</option>{% endverbatim %}
+        </select>
+    </form>
+    {# end filter #}
+
+    {# begin table #}
+    <div class="table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="word">{{ trans('word', plugin) }}</th>
+                    <th class="section">{{ trans('section') }}</th>
+                    <th class="creator">{{ trans('creator', plugin) }}</th>
+                    <th class="created">{{ trans('created', plugin) }}</th>
+                    <th class="cardcount">{{ trans('cards', plugin) }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="word in words"
+                    word-list-item-long word="word"
+                    edit-word="editWord(word)"
+                    delete-word="deleteWord(wordid)"
+                    stop-auto-refresh="stopAutoRefresh()"
+                    start-auto-refresh="startAutoRefresh()">
+                </tr>
+                <tr ng-show="total == 0" class="warning"><td colspan="5" class="no-words">{{ trans('nowords', plugin) }}</td></tr>
+            </tbody>
+        </table>
+    </div>
+    {# end table #}
+
+    {# begin pagination #}
+    {% verbatim %}
+        <pagination per-page="{{ perPage }}"
+                    current-page="currentPage"
+                    total="total"
+                    fetch-page="getPageOfWords(currentPage)"
+                    ng-show="total > perPage">
+        </pagination>
+    {% endverbatim %}
+    {# end pagination #}
+
+</div>
+{# end list existing words #}

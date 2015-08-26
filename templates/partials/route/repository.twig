@@ -1,0 +1,102 @@
+{# begin alerts #}
+<alerts messages="messages"></alerts>
+{# end alerts #}
+
+{# begin list cards #}
+<div class="well well-small" ng-show="!!cards">
+
+    {# begin filters and sorts #}
+    <form class="form-inline" role="form">
+
+        {# begin filter by all or user's only #}
+        <label for="id_filter_userid">{{ trans('view') }}&colon;</label>
+        <select id="id_filter_userid" ng-model="filters.userid" ng-change="filterChanged()">
+            <option value="0" ng-selected="filters.userid != userid">{{ trans('viewall', plugin) }}</option>
+            <option value="{% verbatim %}{{ userid }}{% endverbatim %}" ng-selected="filters.userid == userid">{{ trans('viewmine', plugin) }}</option>
+        </select>
+        {# end filter by all or user's only #}
+
+        {# begin filter by group #}
+        <span ng-if="groups.length > 1">
+            <label for="id_filter_groupid">{{ trans('group') }}&colon;</label>
+            <select id="id_filter_groupid" ng-model="filters.groupid" ng-change="filterChanged()">
+                <option value="0" ng-selected="filters.groupid == 0">{{ trans('all') }}</option>
+                {% verbatim %}<option ng-repeat="group in groups" value="{{ group.id }}" ng-selected="filters.groupid == group.id">{{ group.name }}</option>{% endverbatim %}
+            </select>
+        </span>
+        {# end filter by group #}
+
+        {# begin filter by status #}
+        <span ng-if="omniscience">
+            <label for="id_filter_status">{{ trans('status') }}&colon;</label>
+            <select id="id_filter_status" ng-model="filters.status" ng-change="filterChanged()">
+                <option value="-1" ng-selected="filters.status == -1">{{ trans('all') }}</option>
+                {% verbatim %}<option ng-repeat="status in [0, 1, 2, 3]" value="{{ status }}" ng-selected="filters.status == status">{{ cardStatus[status] }}</option>{% endverbatim %}
+            </select>
+        </span>
+        {# end filter by status #}
+
+        {# begin sort #}
+        <label for="id_filter_sort">{{ trans('sort') }}&colon;</label>
+        <select id="id_filter_sort" ng-model="filters.sort" ng-change="sortChanged()">
+            <option value="word" ng-selected="filters.sort == 'word'">{{ trans('word', plugin) }}</option>
+            <option value="owner" ng-selected="filters.sort == 'owner'">{{ trans('owner', plugin) }}</option>
+            <option value="added" ng-selected="filters.sort == 'added'">{{ trans('timeaddedtorepo', plugin) }}</option>
+            <option value="status" ng-selected="filters.sort == 'status'" ng-if="omniscience">{{ trans('status') }}</option>
+        </select>
+        {# end sort #}
+
+        {# begin free text filter by word or tag #}
+        <label for="id_filter_q">{{ trans('search') }}&colon;</label>
+        <input id="id_filter_q" type="text" ng-trim ng-model="filters.q" ng-keyup="filterQChanged()" placeholder="{{ trans('placeholder:searchbywordortag', plugin) }}"/>
+        {# end free text filter by word or tag #}
+
+    </form>
+    {# end filters and sorts #}
+
+    {# begin table #}
+    <div class="table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-class="{'four-column': !omniscience, 'five-column': omniscience}">{{ trans('word', plugin) }}</th>
+                    <th ng-class="{'four-column': !omniscience, 'five-column': omniscience}">{{ trans('tags') }}</th>
+                    <th ng-class="{'four-column': !omniscience, 'five-column': omniscience}">{{ trans('owner', plugin) }}</th>
+                    <th class="five-column" ng-if="omniscience">{{ trans('status') }}</th>
+                    <th ng-class="{'four-column': !omniscience, 'five-column': omniscience}">{{ trans('timeaddedtorepo', plugin) }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="card in cards"
+                    repo-list-item card="card"
+                    messages="messages"
+                    filter-changed="filterChanged()">
+                </tr>
+                <tr ng-show="!!cards && total == 0" class="warning">
+                    <td colspan="4" class="no-cards" ng-if="!omniscience">{{ trans('nocards', plugin) }}</td>
+                    <td colspan="5" class="no-cards" ng-if="omniscience">{{ trans('nocards', plugin) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {# end table #}
+
+    {# begin pagination #}
+    {% verbatim %}
+        <pagination per-page="{{ perPage }}"
+                    current-page="currentPage"
+                    total="total"
+                    fetch-page="getPageOfCards(currentPage)"
+                    ng-show="total > perPage">
+        </pagination>
+    {% endverbatim %}
+    {# end pagination #}
+
+</div>
+{# end list cards #}
+
+{# begin links #}
+<div ng-show="!!cards">
+    <a ng-href="{% verbatim %}{{ exportUrl }}{% endverbatim %}" class="btn btn-default" target="_blank">{{ trans('pdf:export_library', plugin) }}</a>
+</div>
+{# end links #}

@@ -1,0 +1,60 @@
+{# begin alerts #}
+<alerts messages="messages"></alerts>
+{# end alerts #}
+
+{% block back_to_list %}
+    <a href="#/" ng-if="app == 'cards'">{{ trans('backtolist', plugin) }}</a>
+    <a href="#/" ng-if="app == 'repository'">{{ trans('backtolibrary', plugin) }}</a>
+{% endblock %}
+
+<div class="margin-bottom"><form class="card" ng-show="card" novalidate>
+
+    {# begin left column #}
+    <div class="column column-left">
+
+        {# begin word and phonemic #}
+        <div>
+            <div class="word border column" ng-bind="displayWord()"></div>
+            {% block word_and_phonemic %}{% endblock %}
+            <div class="clearfix"></div>
+        </div>
+        {# end word and phonemic #}
+
+        {# begin other fields #}
+        <div class="border fields">
+            {% block other_fields %}{% endblock %}
+        </div>
+        {# end other fields #}
+
+    </div>
+    {# end left column #}
+
+    {# begin right column #}
+    <div class="column column-right">
+
+        {# begin example sentences #}
+        <div class="border example-sentences margin-bottom">
+            <div>{{ trans('examplesentences', plugin) }}</div>
+            <hr/>
+            {% block example_sentences %}{% endblock %}
+        </div>
+        {# end example sentences #}
+
+        {% block feedback %}{% endblock %}
+        {% block buttons %}{% endblock %}
+
+    </div>
+    {# end right column #}
+
+    <div class="clearfix"></div>
+</form></div>
+
+<div class="clearfix"></div>
+
+{# begin feedback #}
+<feedback card="card"
+          messages="messages"
+          edit-f="editFeedback(feedback)"
+          delete-f="deleteFeedback(feedbackid)">
+</feedback>
+{# end feedback #}

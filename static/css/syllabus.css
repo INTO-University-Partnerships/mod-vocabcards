@@ -1,0 +1,33 @@
+div.alerts {
+    margin-top: 15px;
+}
+
+div.table {
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+table td.no-words {
+    font-weight: bold;
+    text-align: center;
+}
+
+table td.word {
+    width: 25%;
+}
+
+table td.section {
+    width: 20%;
+}
+
+table td.creator {
+    width: 20%;
+}
+
+table td.created {
+    width: 25%;
+}
+
+table td.cardcount {
+    width: auto;
+}

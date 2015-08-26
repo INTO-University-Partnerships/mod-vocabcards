@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vocabcards_syllabus>
+  <word id="16">
+    <word>stomach</word>
+    <sectionnum>3</sectionnum>
+  </word>
+  <word id="15">
+    <word>chest</word>
+    <sectionnum>3</sectionnum>
+  </word>
+  <word id="14">
+    <word>shoulder</word>
+    <sectionnum>2</sectionnum>
+  </word>
+  <word id="13">
+    <word>neck</word>
+    <sectionnum>2</sectionnum>
+  </word>
+  <word id="12">
+    <word>ankle</word>
+    <sectionnum>2</sectionnum>
+  </word>
+  <word id="11">
+    <word>knee</word>
+    <sectionnum>2</sectionnum>
+  </word>
+  <word id="10">
+    <word>thumb</word>
+    <sectionnum>1</sectionnum>
+  </word>
+  <word id="9">
+    <word>arm</word>
+    <sectionnum>1</sectionnum>
+  </word>
+  <word id="8">
+    <word>eye</word>
+    <sectionnum>1</sectionnum>
+  </word>
+  <word id="7">
+    <word>ear</word>
+    <sectionnum>1</sectionnum>
+  </word>
+  <word id="6">
+    <word>nose</word>
+    <sectionnum>0</sectionnum>
+  </word>
+  <word id="5">
+    <word>head</word>
+    <sectionnum>0</sectionnum>
+  </word>
+  <word id="4">
+    <word>leg</word>
+    <sectionnum>0</sectionnum>
+  </word>
+  <word id="3">
+    <word>finger</word>
+    <sectionnum>0</sectionnum>
+  </word>
+</vocabcards_syllabus>

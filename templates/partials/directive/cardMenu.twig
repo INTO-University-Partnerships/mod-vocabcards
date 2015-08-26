@@ -1,0 +1,8 @@
+{#<div ng-controller="menuCtrl" ng-show="canFeedback">#}
+<div ng-show="canFeedback">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="item in menu" ng-class="{'active': item.active}">
+            {% verbatim %}<a ng-href="{{ item.route }}">{{ item.title }}</a>{% endverbatim %}
+        </li>
+    </ul>
+</div>

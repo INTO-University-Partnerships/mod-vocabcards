@@ -1,0 +1,9 @@
+{% verbatim %}
+    <td>
+        <a ng-href="{{ cardHref(card) }}">
+            <strong>{{ card.word|uppercase|substring:0:1 }}{{ card.word|lowercase|substring:1 }}</strong>
+        </a>
+    </td>
+    <td>{{ card.ownerfullname }}</td>
+    <td>{{ card.timemodified }}</td>
+{% endverbatim %}

@@ -1,0 +1,13 @@
+{% verbatim %}
+    <td>
+        <a ng-href="{{ cardHref(card) }}">
+            <strong>{{ card.word|uppercase|substring:0:1 }}{{ card.word|lowercase|substring:1 }}</strong>
+        </a>
+    </td>
+    <td>
+        <span ng-if="card.status == reverseCardStatus['in_repository']">
+            <a ng-href="{{ repositoryUrl }}">{{ cardStatus[card.status] }}</a>
+        </span>
+        <span ng-if="card.status != reverseCardStatus['in_repository']">{{ cardStatus[card.status] }}</span>
+    </td>
+{% endverbatim %}

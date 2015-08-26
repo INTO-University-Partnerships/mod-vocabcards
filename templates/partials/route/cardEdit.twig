@@ -1,0 +1,31 @@
+{% extends 'base/cardItem.twig' %}
+
+{% block word_and_phonemic %}
+    <div class="phonemic border column">
+        <input type="text" ng-model="card.phonemic" placeholder="{{ trans('placeholder:phonemic', plugin) }}"/>
+    </div>
+{% endblock %}
+
+{% block other_fields %}
+    {% include 'includes/cardTextareaField.twig' with {'field': 'definition', 'last': false} %}
+    {% for field in ['noun', 'verb', 'adverb', 'adjective', 'synonym_', 'antonym_', 'prefixes', 'suffixes'] %}
+        {% include 'includes/cardInputField.twig' with {'field': field, 'last': false} %}
+    {% endfor %}
+    {% include 'includes/cardTextareaField.twig' with {'field': 'collocations', 'last': false} %}
+    {% include 'includes/cardInputField.twig' with {'field': 'tags', 'last': true} %}
+{% endblock %}
+
+{% block example_sentences %}
+    <textarea id="id_sentences" ng-model="card.sentences" ng-trim></textarea>
+{% endblock %}
+
+{% block buttons %}
+    <div class="buttons">
+        <div>
+            <a href="#/">{{ trans('cancel') }}</a>
+            <button class="btn" type="button" ng-click="saveChanges()" ng-if="card">{{ trans('savechanges') }}</button>
+            <button class="btn" type="button" ng-click="sendToTutor()" ng-if="card && (card.status != reverseCardStatus['in_repository'])">{{ trans('sendtotutor', plugin) }}</button>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

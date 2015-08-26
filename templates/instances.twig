@@ -1,0 +1,5 @@
+{{ page('course', course.id, wwwroot ~ slug ~ path('instances', {courseid: course.id})) }}
+{{ navbaradd(trans('modulenameplural', plugin)) }}
+{{ header()|raw }}
+{{ table(table)|raw }}
+{{ footer()|raw }}

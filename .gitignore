@@ -1,0 +1,3 @@
+phpunit.xml
+node_modules
+static/js/components

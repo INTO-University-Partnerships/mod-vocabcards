@@ -1,0 +1,31 @@
+<div class="card-feedback" ng-show="feedback">
+    <h4>{{ trans('feedbackreceived', plugin) }}</h4>
+
+    {# begin table #}
+    <div class="table">
+        <table class="table table-bordered">
+            <tbody>
+                <tr ng-repeat="f in feedback"
+                    feedback-list-item feedback="f"
+                    edit-feedback="editFeedback(feedback)"
+                    delete-feedback="deleteFeedback(feedbackid)"
+                    stop-auto-refresh="stopAutoRefresh()"
+                    start-auto-refresh="startAutoRefresh()">
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {# end table #}
+
+    {# begin pagination #}
+    {% verbatim %}
+        <pagination per-page="{{ perPage }}"
+                    current-page="currentPage"
+                    total="total"
+                    fetch-page="getPageOfFeedback(currentPage)"
+                    ng-show="total > perPage">
+        </pagination>
+    {% endverbatim %}
+    {# end pagination #}
+
+</div>

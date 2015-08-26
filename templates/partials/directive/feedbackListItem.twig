@@ -1,0 +1,8 @@
+<td class="user"><span ng-class="{'strong': feedback.is_tutor}">{% verbatim %}{{ feedback.userfullname }}{% endverbatim %}</span></td>
+<td class="feedback">
+    <span ng-show="editing"><input type="text" ng-trim ng-model="feedback.feedback" ng-blur="editing = false; disableEditing()" select-on-focus/></span>
+    <span ng-hide="editing"><span ng-class="{'strong': feedback.is_tutor}">{% verbatim %}{{ feedback.feedback }}{% endverbatim %}</span></span>
+    <span ng-hide="editing || !(canFeedback || feedback.userid == userid)"><a href="javascript:;" ng-click="enableEditing()">{{ pix_icon('t/editstring', trans('edit'))|raw }}</a></span>
+    <span ng-hide="editing || !(canFeedback || feedback.userid == userid)"><a href="javascript:;" ng-click="deleteFeedback({feedbackid: feedback.id})">{{ pix_icon('t/delete', trans('delete'))|raw }}</a></span>
+</td>
+<td class="time-created">{% verbatim %}{{ feedback.timecreated }}{% endverbatim %}</td>

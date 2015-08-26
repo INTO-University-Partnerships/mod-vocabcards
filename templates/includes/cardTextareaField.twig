@@ -1,0 +1,9 @@
+<div class="{% if last == false %}margin-bottom{% endif %}">
+    <div class="column">
+        <label for="id_{{ field }}">{{ trans('label:' ~ field, plugin) }}&colon;</label>
+    </div>
+    <div class="column">
+        <textarea id="id_{{ field }}" ng-model="card.{{ field }}" ng-trim></textarea>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,28 @@
+{# begin alerts #}
+<alerts messages="messages"></alerts>
+{# end alerts #}
+
+{# begin menu #}
+<card-menu></card-menu>
+{# end menu #}
+
+{# begin list cards #}
+<div class="well well-small" ng-show="!!cards">
+
+    {# begin table #}
+    <div class="table">
+        <table class="table table-bordered">
+            <thead>
+                {% block header_row %}{% endblock %}
+            </thead>
+            <tbody>
+                {% block rows %}{% endblock %}
+            </tbody>
+        </table>
+    </div>
+    {# end table #}
+
+    {% block pagination %}{% endblock %}
+
+</div>
+{# end list cards #}

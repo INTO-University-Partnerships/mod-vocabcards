@@ -1,0 +1,9 @@
+<div class="{% if last == false %}margin-bottom{% endif %}">
+    <div class="column">
+        <label>{{ trans('label:' ~ field, plugin) }}&colon;</label>
+    </div>
+    <div class="column">
+        <p ng-bind="card.{{ field }}"></p>
+    </div>
+    <div class="clearfix"></div>
+</div>

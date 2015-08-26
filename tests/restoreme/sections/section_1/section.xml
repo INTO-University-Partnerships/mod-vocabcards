@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section id="1">
+  <number>0</number>
+  <name>Section ZERO</name>
+  <summary>&lt;p&gt;Summary for the general section ZERO goes here!&lt;br&gt;&lt;/p&gt;</summary>
+  <summaryformat>1</summaryformat>
+  <sequence></sequence>
+  <visible>1</visible>
+  <availabilityjson>$@NULL@$</availabilityjson>
+</section>

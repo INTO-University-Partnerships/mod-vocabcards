@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<activity id="2" moduleid="5" modulename="vocabcards" contextid="35">
+  <vocabcards id="2">
+    <name>Vocabulary cards 001</name>
+    <startdate>1419984000</startdate>
+    <header>&lt;p&gt;&lt;a href="$@COURSEVIEWBYID*2@$"&gt;Course link in header&lt;/a&gt;&lt;/p&gt;</header>
+    <footer>&lt;p&gt;&lt;a href="$@COURSEVIEWBYID*2@$"&gt;Course link in footer&lt;/a&gt;&lt;/p&gt;</footer>
+    <timecreated>1401892428</timecreated>
+    <timemodified>1401892485</timemodified>
+  </vocabcards>
+</activity>

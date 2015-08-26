@@ -1,0 +1,15 @@
+th.four-column {
+    width: 25%;
+}
+
+th.five-column {
+    width: 20%;
+}
+
+div.table {
+    margin-top: 10px;
+}
+
+td select {
+    margin: 0;
+}

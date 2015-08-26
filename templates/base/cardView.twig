@@ -1,0 +1,20 @@
+{% extends 'base/cardItem.twig' %}
+
+{% block word_and_phonemic %}
+    <div class="phonemic-readonly border column">
+        <p ng-bind="card.phonemic"></p>
+    </div>
+{% endblock %}
+
+{% block other_fields %}
+    {% include 'includes/cardParagraphField.twig' with {'field': 'definition', 'last': false} %}
+    {% for field in ['noun', 'verb', 'adverb', 'adjective', 'synonym_', 'antonym_', 'prefixes', 'suffixes'] %}
+        {% include 'includes/cardParagraphField.twig' with {'field': field, 'last': false} %}
+    {% endfor %}
+    {% include 'includes/cardParagraphField.twig' with {'field': 'collocations', 'last': false} %}
+    {% include 'includes/cardParagraphField.twig' with {'field': 'tags', 'last': true} %}
+{% endblock %}
+
+{% block example_sentences %}
+    <p ng-bind="card.sentences"></p>
+{% endblock %}

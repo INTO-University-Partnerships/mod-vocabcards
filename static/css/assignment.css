@@ -1,0 +1,41 @@
+div.lcolumn {
+    float: left;
+    width: 49%;
+}
+
+div.mcolumn {
+    float: left;
+    width: auto;
+}
+
+div.rcolumn {
+    float: right;
+    width: 49%;
+}
+
+div.table {
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+div.confirm-assignments {
+    margin-top: 10px;
+}
+
+table td.no-words,
+table td.no-students {
+    font-weight: bold;
+    text-align: center;
+}
+
+table th.column1 {
+    width: 280px;
+}
+
+button.removable {
+    margin-bottom: 5px;
+}
+
+.pointer {
+    cursor: pointer;
+}

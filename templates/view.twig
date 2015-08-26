@@ -1,0 +1,74 @@
+{% extends 'base/app.twig' %}
+
+{% block page %}
+    {{ page('module', cm.id, wwwroot ~ slug ~ path('instances', {courseid: course.id})) }}
+{% endblock %}
+
+{% block navbaradd %}{# empty #}{% endblock %}
+
+{% block h2 %}
+    <h2>{{ instance.name }}</h2>
+{% endblock %}
+
+{% block header %}
+    {% if instance.header is defined and instance.header is not empty %}
+        <div>
+            <div>{{ instance.header|raw }}</div>
+            <hr/>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% if instance.footer is defined and instance.footer is not empty %}
+        <div>
+            <hr/>
+            <div>{{ instance.footer|raw }}</div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block angularjs_config %}
+<script>
+    CONFIG = {
+        app: '{{ app }}',
+        cmid: {{ cm.id }},
+        userid: {{ userid }},
+        instanceid: {{ instance.id }},
+        repositoryUrl: '{{ wwwroot ~ slug ~ path('repository', {courseid: course.id}) }}',
+        partialsUrl: '{{ wwwroot ~ slug ~ '/partials/' }}',
+        apiUrls: {
+            cards: '{{ wwwroot ~ slug ~ path('getcards', {courseid: course.id}) }}',
+            feedbacks: '{{ wwwroot ~ slug ~ path('getfeedbacks', {courseid: course.id}) }}'
+        },
+        sesskey: '{{ sesskey() }}',
+        cardStatus: [
+            {% for i in range(0, 3) %}
+            '{{ trans('status:' ~ i, plugin) }}'{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        reverseCardStatus: {
+            {% for s in ['not_started', 'in_progress', 'in_review', 'in_repository'] %}
+            '{{ s }}': {{ loop.index0 }}{% if not loop.last %},{% endif %}
+            {% endfor %}
+        },
+        messages: {
+            {% for m in [
+                   'cannot_edit_card_as_in_review',
+                   'cannot_edit_card_as_not_owner',
+                   'cannot_review_card_as_not_in_review',
+                   'menu_edit_cards',
+                   'menu_review_cards',
+                   'cannot_review',
+                   'confirm_delete_feedback',
+                   'feedback_deleted_successfully'
+               ]
+            %}
+            '{{ m }}': '{{ trans('js:' ~ m, plugin) }}'{% if not loop.last %},{% endif %}
+            {% endfor %}
+        },
+        canFeedback: {% if can_feedback %}true{% else %}false{% endif %},
+        angularjs_route: '{{ angularjs_route }}'
+    };
+</script>
+{% endblock %}

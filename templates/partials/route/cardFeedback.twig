@@ -1,0 +1,31 @@
+{% extends 'base/cardView.twig' %}
+
+{% block back_to_list %}
+    <a href="#/card/feedback" ng-if="app == 'cards'">{{ trans('backtolist', plugin) }}</a>
+    <a href="#/" ng-if="app == 'repository'">{{ trans('backtolibrary', plugin) }}</a>
+{% endblock %}
+
+{% block feedback %}
+    <div class="border example-sentences margin-bottom">
+        <div>{{ trans('feedback', plugin) }}</div>
+        <hr/>
+        <textarea id="id_feedback" ng-model="feedback" ng-trim></textarea>
+        <div class="buttons">
+            <div>
+                <button class="btn" type="button" ng-disabled="!feedback" ng-click="addFeedback()">{{ trans('add') }}</button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}
+
+{% block buttons %}
+    <div class="buttons" ng-if="app == 'cards'">
+        <div>
+            <a href="#/card/feedback">{{ trans('cancel') }}</a>
+            <button class="btn" type="button" ng-click="sendToStudent()">{{ trans('sendtostudent', plugin) }}</button>
+            <button class="btn" type="button" ng-click="sendToRepository()">{{ trans('sendtorepository', plugin) }}</button>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

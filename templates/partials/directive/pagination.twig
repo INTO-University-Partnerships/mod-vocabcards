@@ -1,0 +1,13 @@
+<div class="pagination pagination-small">
+    <ul>
+        <li ng-class="prevPageDisabled() ? 'disabled' : ''">
+            <a href="javascript:;" ng-click="prevPage()">&laquo;</a>
+        </li>
+        <li ng-class="pageDisabled(page - 1) ? 'active' : ''" ng-repeat="page in pages">
+            <a href="javascript:;" ng-click="gotoPage(page - 1)">{% verbatim %}{{ page }}{% endverbatim %}</a>
+        </li>
+        <li ng-class="nextPageDisabled() ? 'disabled' : ''">
+            <a href="javascript:;" ng-click="nextPage()">&raquo;</a>
+        </li>
+    </ul>
+</div>

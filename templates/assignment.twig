@@ -1,0 +1,34 @@
+{% extends 'base/app.twig' %}
+
+{% block angularjs_config %}
+<script>
+    CONFIG = {
+        app: '{{ app }}',
+        partialsUrl: '{{ wwwroot ~ slug ~ '/partials/' }}',
+        apiUrls: {
+            words: '{{ wwwroot ~ slug ~ path('getwords', {courseid: course.id}) }}',
+            students: '{{ wwwroot ~ slug ~ path('getstudents', {courseid: course.id}) }}',
+            cards: '{{ wwwroot ~ slug ~ path('getcards', {courseid: course.id}) }}'
+        },
+        sesskey: '{{ sesskey() }}',
+        sections: [
+            {% for section in sections %}{
+                id: {{ section.id }},
+                section: {{ section.section }},
+                name: '{{ section.name }}'
+            }{% if not loop.last %},{% endif %}{% endfor %}
+        ],
+        groups: [
+            {% for group in groups %}{
+                id: {{ group.id }},
+                name: '{{ group.name }}'
+            }{% if not loop.last %},{% endif %}{% endfor %}
+        ],
+        messages: {
+            'confirm_delete_card': '{{ trans('js:confirm_delete_card', plugin) }}',
+            'confirm_assign_cards_without_group': '{{ trans('js:confirm_assign_cards_without_group', plugin) }}',
+            'card_deleted_successfully': '{{ trans('js:card_deleted_successfully', plugin) }}'
+        }
+    };
+</script>
+{% endblock %}
