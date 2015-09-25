@@ -51,6 +51,9 @@ $controller->get('/{courseid}', function ($courseid) use ($app) {
         unset($SESSION->vocabcards_angularjs_route);
     }
 
+    // set heading and title
+    $app['heading_and_title']($course->fullname, get_string('repository', $app['plugin']));
+
     // serve AngularJS app
     return $app['twig']->render('repository.twig', array(
         'app' => 'repository',

@@ -75,6 +75,9 @@ $controller->get('/{cmid}', function ($cmid) use ($app) {
         unset($SESSION->vocabcards_angularjs_route);
     }
 
+    // set heading and title
+    $app['heading_and_title']($course->fullname, $instance->name);
+
     // serve AngularJS app
     return $app['twig']->render('view.twig', array(
         'app' => 'cards',

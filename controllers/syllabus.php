@@ -24,6 +24,9 @@ $controller->get('/{courseid}', function ($courseid) use ($app) {
     // prepare course sections
     $sections = vocabcards_prepare_course_sections($course);
 
+    // set heading and title
+    $app['heading_and_title']($course->fullname, get_string('syllabus', $app['plugin']));
+
     // serve AngularJS app
     return $app['twig']->render('syllabus.twig', array(
         'app' => 'syllabus',

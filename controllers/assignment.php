@@ -33,6 +33,9 @@ $controller->get('/{courseid}', function ($courseid) use ($app) {
         $groups = $model->get_user_groups_in_course($courseid, $USER->id);
     }
 
+    // set heading and title
+    $app['heading_and_title']($course->fullname, get_string('assignment', $app['plugin']));
+
     // serve AngularJS app
     return $app['twig']->render('assignment.twig', array(
         'app' => 'assignment',
