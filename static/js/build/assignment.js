@@ -114,7 +114,7 @@ app.controller('wordsCtrl', ['$scope', '$timeout', 'wordsSrv', 'CONFIG', functio
             $scope.words = null;
             $scope.totalWords = 0;
             $scope.messages.error = error.errorMessage;
-        })['finally'](function () {
+        }).finally(function () {
             $scope.timeoutPromiseWords = $timeout(function () {
                 $scope.getPageOfWords($scope.currentPageWords);
             }, 10000);
@@ -190,7 +190,7 @@ app.controller('studentsCtrl', ['$scope', '$timeout', '$window', 'studentsSrv', 
             $scope.students = null;
             $scope.totalStudents = 0;
             $scope.messages.error = error.errorMessage;
-        })['finally'](function () {
+        }).finally(function () {
             if ($scope.selections.student) {
                 angular.forEach($scope.students, function (value) {
                     if (value.id === $scope.selections.student.id) {
@@ -244,7 +244,7 @@ app.controller('studentsCtrl', ['$scope', '$timeout', '$window', 'studentsSrv', 
                 $scope.messages.success = config.messages.card_deleted_successfully;
             }, function (error) {
                 $scope.messages.error = error.errorMessage;
-            })['finally'](function () {
+            }).finally(function () {
                 $scope.timers.on = true;
             });
         }, 1);
@@ -273,7 +273,7 @@ app.controller('confirmationCtrl', ['$scope', '$timeout', '$window', 'cardsSrv',
                 $scope.messages.success = data.successMessage;
             }, function (error) {
                 $scope.messages.error = error.errorMessage;
-            })['finally'](function () {
+            }).finally(function () {
                 $scope.timers.on = true;
             });
         }, 1);
@@ -485,7 +485,7 @@ app.controller('cardFeedbackCtrl', ['$scope', '$routeParams', '$timeout', '$wind
             $scope.messages.success = data.successMessage;
         }, function (error) {
             $scope.messages.error = error.errorMessage;
-        })['finally'](function () {
+        }).finally(function () {
             $scope.getCard();
         });
     };
@@ -499,7 +499,7 @@ app.controller('cardFeedbackCtrl', ['$scope', '$routeParams', '$timeout', '$wind
                 $scope.messages.success = config.messages.feedback_deleted_successfully;
             }, function (error) {
                 $scope.messages.error = error.errorMessage;
-            })['finally'](function () {
+            }).finally(function () {
                 $scope.getCard();
             });
         }, 1);
@@ -547,18 +547,18 @@ app.directive('alerts', ['CONFIG', function (config) {
         link: function link(scope, element) {
             element.find('button').bind('click', function () {
                 scope.$apply(function () {
-                    scope['class'] = '';
+                    scope.class = '';
                     scope.msg = '';
                 });
             });
         },
         controller: ['$scope', function ($scope) {
-            $scope['class'] = '';
+            $scope.class = '';
 
             $scope.setMessage = function (status) {
                 if ($scope.messages[status]) {
                     $scope.msg = $scope.messages[status];
-                    $scope['class'] = 'alert-' + status;
+                    $scope.class = 'alert-' + status;
                     $scope.messages = {};
                 }
             };
@@ -677,7 +677,7 @@ app.directive('feedback', ['$timeout', 'feedbackSrv', 'CONFIG', function ($timeo
                     $scope.feedback = null;
                     $scope.total = 0;
                     $scope.messages.error = error.errorMessage;
-                })['finally'](function () {
+                }).finally(function () {
                     $scope.timeoutPromise = $timeout(function () {
                         $scope.getPageOfFeedback($scope.currentPage);
                     }, 10000);
@@ -864,7 +864,7 @@ app.service('wordsSrv', ['$http', '$q', 'CONFIG', function ($http, $q, config) {
 
     this.deleteWord = function (wordid) {
         var deferred = $q.defer();
-        $http['delete'](url + '/' + wordid + '?sesskey=' + config.sesskey).success(function (data) {
+        $http.delete(url + '/' + wordid + '?sesskey=' + config.sesskey).success(function (data) {
             deferred.resolve(data);
         }).error(function (data) {
             deferred.reject(data);
@@ -960,7 +960,7 @@ app.service('cardsSrv', ['$http', '$q', 'CONFIG', function ($http, $q, config) {
 
     this.deleteCard = function (cardid) {
         var deferred = $q.defer();
-        $http['delete'](url + '/' + cardid + '?sesskey=' + config.sesskey).success(function (data) {
+        $http.delete(url + '/' + cardid + '?sesskey=' + config.sesskey).success(function (data) {
             deferred.resolve(data);
         }).error(function (data) {
             deferred.reject(data);
@@ -1019,7 +1019,7 @@ app.service('feedbackSrv', ['$http', '$q', 'CONFIG', function ($http, $q, config
 
     this.deleteFeedback = function (feedbackid) {
         var deferred = $q.defer();
-        $http['delete'](url + '/' + feedbackid + '?sesskey=' + config.sesskey + '&app=' + config.app).success(function (data) {
+        $http.delete(url + '/' + feedbackid + '?sesskey=' + config.sesskey + '&app=' + config.app).success(function (data) {
             deferred.resolve(data);
         }).error(function (data) {
             deferred.reject(data);

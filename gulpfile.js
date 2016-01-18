@@ -46,7 +46,7 @@ function buildScript(production, app) {
     };
 
     var bundler = production ? browserify(props) : watchify(browserify(props));
-    bundler.transform(babelify).transform(envify());
+    bundler.transform(babelify, {presets: ['es2015', 'react']}).transform(envify());
     bundler.on('update', function () {
         rebundle(bundler, production, app);
         gutil.log('Rebundle ...');
