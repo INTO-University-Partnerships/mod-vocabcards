@@ -37,7 +37,7 @@ The following packages must be added to `composer.json`:
         "guzzlehttp/guzzle": "4.2.*"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master"
+        "mockery/mockery": "0.9.4"
     }
 
 # Installation
