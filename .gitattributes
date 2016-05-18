@@ -1,0 +1,2 @@
+static/js/build/*.js -diff
+static/js/build/*.min.js -diff
