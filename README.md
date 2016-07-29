@@ -6,7 +6,7 @@ Commands are relative to the directory in which Moodle is installed.
 
 ## Dependencies
 
-Moodle 2.9
+Moodle 2.9 or Moodle 3.1
 
 The following packages must be added to `composer.json`:
 
